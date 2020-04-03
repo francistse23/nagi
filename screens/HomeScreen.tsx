@@ -1,12 +1,18 @@
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  SafeAreaView,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { scale, verticalScale } from "../utilities/scale";
 
-export default function EntranceScreen() {
+export default function HomeScreen() {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <LinearGradient
         colors={["#8B9DD8", "#8BD8C6"]}
         end={[0, 0.6]}
@@ -53,7 +59,7 @@ export default function EntranceScreen() {
           </Text>
         </TouchableOpacity>
       </LinearGradient>
-    </View>
+    </SafeAreaView>
   );
 }
 
