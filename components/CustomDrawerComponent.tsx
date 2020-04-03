@@ -1,9 +1,6 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import {
-  DrawerContentScrollView,
-  DrawerItemList,
-} from "@react-navigation/drawer";
+import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 
 import { scale, verticalScale } from "../utilities/scale";
 import Constants from "../constants";
@@ -17,7 +14,46 @@ export default function CustomDrawerContent(props) {
         <Text style={styles.headerText}>Nagi</Text>
         <Image source={require("../assets/nagi.png")} style={styles.icon} />
       </View>
-      <DrawerItemList {...props} />
+      <DrawerItem
+        icon={() => (
+          <Image
+            source={require("../assets/home.png")}
+            style={{ height: 41, width: 39 }}
+          />
+        )}
+        label={() => <Text style={styles.label}>Home</Text>}
+        onPress={() => props.navigation.navigate("Home")}
+      />
+      <DrawerItem
+        icon={() => (
+          <Image
+            source={require("../assets/guide.png")}
+            style={{ height: 41, width: 39 }}
+          />
+        )}
+        label={() => <Text style={styles.label}>Meditating Guide</Text>}
+        // onPress={() => props.navigation.navigate("Home")}
+      />
+      <DrawerItem
+        icon={() => (
+          <Image
+            source={require("../assets/tips.png")}
+            style={{ height: 41, width: 39 }}
+          />
+        )}
+        label={() => <Text style={styles.label}>Tips</Text>}
+        // onPress={() => props.navigation.navigate("Home")}
+      />
+      <DrawerItem
+        icon={() => (
+          <Image
+            source={require("../assets/contact.png")}
+            style={{ height: 41, width: 39 }}
+          />
+        )}
+        label={() => <Text style={styles.label}>Contact</Text>}
+        // onPress={() => props.navigation.navigate("Home")}
+      />
     </DrawerContentScrollView>
   );
 }
@@ -27,7 +63,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
-    marginVertical: verticalScale(spacing),
+    marginVertical: verticalScale(spacing * 2),
     paddingHorizontal: scale(spacing),
   },
   headerText: {
@@ -37,5 +73,9 @@ const styles = StyleSheet.create({
   icon: {
     height: verticalScale(100),
     width: scale(100),
+  },
+  label: {
+    color: textColor,
+    fontSize: scale(20),
   },
 });

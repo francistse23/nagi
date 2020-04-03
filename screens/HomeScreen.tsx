@@ -8,13 +8,22 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
+import Constants from "../constants";
 import { scale, verticalScale } from "../utilities/scale";
+
+const {
+  buttonColor,
+  mainColor,
+  secondaryColor,
+  spacing,
+  textColor,
+} = Constants;
 
 export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
-        colors={["#8B9DD8", "#8BD8C6"]}
+        colors={[secondaryColor, mainColor]}
         end={[0, 0.6]}
         style={{
           alignItems: "center",
@@ -26,9 +35,9 @@ export default function HomeScreen() {
       >
         <Text
           style={{
-            color: "ghostwhite",
+            color: textColor,
             fontFamily: "Roboto",
-            fontSize: 60,
+            fontSize: scale(60),
             textAlign: "center",
           }}
         >
@@ -44,9 +53,9 @@ export default function HomeScreen() {
         />
         <Text
           style={{
-            color: "ghostwhite",
+            color: textColor,
             fontFamily: "Roboto",
-            fontSize: 30,
+            fontSize: scale(30),
             paddingHorizontal: scale(50),
             textAlign: "center",
           }}
@@ -54,7 +63,7 @@ export default function HomeScreen() {
           "Quiet the mind, and the soul will speak."
         </Text>
         <TouchableOpacity style={styles.button}>
-          <Text style={{ color: "white", fontSize: scale(30) }}>
+          <Text style={{ color: textColor, fontSize: scale(30) }}>
             Start Meditating
           </Text>
         </TouchableOpacity>
@@ -66,15 +75,15 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   button: {
     alignItems: "center",
-    backgroundColor: "#94D88B",
+    backgroundColor: buttonColor,
     borderRadius: scale(15),
     height: verticalScale(90),
     justifyContent: "center",
+    marginVertical: verticalScale(spacing),
     width: scale(300),
   },
   container: {
     alignItems: "center",
-    // backgroundColor: "#8BD8C6",
     flex: 1,
     justifyContent: "center",
   },
