@@ -1,6 +1,7 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
+import * as WebBrowser from "expo-web-browser";
 
 import { scale, verticalScale } from "../utilities/scale";
 import Constants from "../constants";
@@ -52,7 +53,9 @@ export default function CustomDrawerContent(props) {
           />
         )}
         label={() => <Text style={styles.label}>Contact</Text>}
-        // onPress={() => props.navigation.navigate("Home")}
+        onPress={async () =>
+          await WebBrowser.openBrowserAsync("https://francistse.me/")
+        }
       />
     </DrawerContentScrollView>
   );

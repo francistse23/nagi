@@ -11,6 +11,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import HomeScreen from "../screens/HomeScreen";
 import CustomDrawerContent from "./CustomDrawerComponent";
+import Constants from "../constants";
 
 const Drawer = createDrawerNavigator();
 
@@ -20,10 +21,10 @@ export default function DrawerNavigator(props) {
   return (
     <Drawer.Navigator
       backBehavior="history"
-      drawerContent={props => <CustomDrawerContent {...props} />}
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
       drawerStyle={styles.drawerStyle}
       drawerType="slide"
-      edgeWidth={width * 0.15}
+      edgeWidth={width * 0.4}
       initialRouteName="Home"
     >
       <Drawer.Screen name="Home" component={HomeScreen} />
@@ -33,7 +34,7 @@ export default function DrawerNavigator(props) {
 
 const styles = StyleSheet.create({
   drawerStyle: {
-    backgroundColor: "#8BD8C6",
+    backgroundColor: Constants.secondaryColor,
     width: width * 0.75,
   },
 });
