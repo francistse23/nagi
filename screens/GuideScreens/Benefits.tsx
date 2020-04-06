@@ -2,6 +2,7 @@ import React from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 
 import Constants from "../../constants";
+import { MediumText, SmallText, VerticalView } from "app/styled-components";
 
 const { fontSize, textColor } = Constants;
 
@@ -15,14 +16,14 @@ const benefits = [
 
 export default function Benefits() {
   return (
-    <View>
-      <Text style={styles.item}>Some of the benefits of meditating...</Text>
+    <VerticalView style={{ padding: 48 }}>
+      <MediumText>Some of the benefits of meditating...</MediumText>
       <FlatList
         data={benefits}
         keyExtractor={(item, index) => String(index)}
-        renderItem={({ item }) => <Text style={styles.item}>{item}</Text>}
+        renderItem={({ item }) => <SmallText>{item}</SmallText>}
       />
-    </View>
+    </VerticalView>
   );
 }
 

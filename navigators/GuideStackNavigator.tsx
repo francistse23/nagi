@@ -6,7 +6,7 @@ const Stack = createStackNavigator();
 
 export default function GuideStackNavigator() {
   return (
-    <Stack.Navigator initialRouteName="Benefits">
+    <Stack.Navigator headerMode="none" initialRouteName="Benefits">
       <Stack.Screen name="Benefits" component={Benefits} />
     </Stack.Navigator>
   );

@@ -33,7 +33,9 @@ export default function CustomDrawerContent(props) {
           />
         )}
         label={() => <Text style={styles.label}>Meditating Guide</Text>}
-        onPress={() => props.navigation.navigate("Guide")}
+        onPress={() =>
+          props.navigation.navigate("Guide", { screen: "Benefits" })
+        }
       />
       <DrawerItem
         icon={() => (
