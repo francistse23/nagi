@@ -29,17 +29,17 @@ export default function CustomDrawerContent(props) {
         icon={() => (
           <Image
             source={require("../assets/guide.png")}
-            style={{ height: 41, width: 39 }}
+            style={{ height: 40, width: 39 }}
           />
         )}
         label={() => <Text style={styles.label}>Meditating Guide</Text>}
-        // onPress={() => props.navigation.navigate("Home")}
+        onPress={() => props.navigation.navigate("Guide")}
       />
       <DrawerItem
         icon={() => (
           <Image
             source={require("../assets/tips.png")}
-            style={{ height: 41, width: 39 }}
+            style={{ height: 40, width: 40 }}
           />
         )}
         label={() => <Text style={styles.label}>Tips</Text>}
@@ -49,7 +49,7 @@ export default function CustomDrawerContent(props) {
         icon={() => (
           <Image
             source={require("../assets/contact.png")}
-            style={{ height: 41, width: 39 }}
+            style={{ height: 39, width: 40 }}
           />
         )}
         label={() => <Text style={styles.label}>Contact</Text>}
