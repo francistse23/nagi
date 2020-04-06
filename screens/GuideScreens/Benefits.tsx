@@ -1,10 +1,8 @@
 import React from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList } from "react-native";
 
 import Constants from "../../constants";
 import { MediumText, SmallText, VerticalView } from "app/styled-components";
-
-const { fontSize, textColor } = Constants;
 
 const benefits = [
   "Understand your pain",
@@ -26,10 +24,3 @@ export default function Benefits() {
     </VerticalView>
   );
 }
-
-const styles = StyleSheet.create({
-  item: {
-    color: textColor,
-    fontSize: fontSize,
-  },
-});
