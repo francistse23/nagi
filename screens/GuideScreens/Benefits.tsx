@@ -1,5 +1,10 @@
 import React from "react";
 import { FlatList } from "react-native";
+import {
+  FlingGestureHandler,
+  Directions,
+  State,
+} from "react-native-gesture-handler";
 
 import Constants from "../../constants";
 import {
