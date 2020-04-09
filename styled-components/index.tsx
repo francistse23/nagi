@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Constants from "app/constants";
+import Constants from "../constants";
 
 const { fontSize, mainColor, textColor } = Constants;
 
@@ -21,5 +21,5 @@ export const MediumText = styled.Text`
 
 export const SmallText = styled.Text`
   color: ${textColor};
-  font-size: ${fontSize}px;
+  font-size: ${fontSize * 1.5}px;
 `;

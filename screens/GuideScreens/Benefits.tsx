@@ -7,7 +7,7 @@ import {
   MediumText,
   SmallText,
   VerticalView,
-} from "app/styled-components";
+} from "../../styled-components";
 
 const { spacing } = Constants;
 
@@ -21,13 +21,15 @@ export default function Benefits() {
   ];
 
   return (
-    <VerticalView style={{ padding: 48 }}>
-      <MediumText>Some of the benefits of meditating...</MediumText>
+    <VerticalView style={{ padding: spacing * 4 }}>
+      <MediumText style={{ marginBottom: spacing * 2 }}>
+        Some of the benefits of meditating...
+      </MediumText>
       <FlatList
         data={benefits}
         keyExtractor={(item, index) => String(index)}
         renderItem={({ item }) => (
-          <SmallText style={{ marginVertical: spacing }}>{item}</SmallText>
+          <SmallText style={{ marginVertical: spacing }}>- {item}</SmallText>
         )}
       />
     </VerticalView>
