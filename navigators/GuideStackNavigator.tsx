@@ -63,17 +63,33 @@ export default function GuideStackNavigator() {
 
   const guides = useMemo(() => compileGuide(guideItems), [guideItems]);
 
+  console.log(guides);
+
   return (
     <Stack.Navigator headerMode="none" initialRouteName="Benefits">
       <Stack.Screen name="Benefits" component={Benefits} />
       {guides.map((guide, index) => {
         const [screenName] = Object.keys(guide);
-        const component: any = Guide(guide);
+        const { description, image, next, number, prev } = Object.values(
+          guide
+        )[0];
+
+        const component = (
+          <Guide
+            description={description}
+            image={image}
+            name={screenName}
+            next={next}
+            number={number}
+            prev={prev}
+          />
+        );
 
         return (
           <Stack.Screen key={index} name={screenName} component={component} />
         );
       })}
+      {/* <Stack.Screen name="Take a Seat" component={Guide} /> */}
     </Stack.Navigator>
   );
 }

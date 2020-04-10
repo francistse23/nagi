@@ -2,8 +2,14 @@ import React, { useCallback, useMemo } from "react";
 import GestureRecognizer, {
   swipeDirections,
 } from "react-native-swipe-gestures";
+import { useNavigation } from "@react-navigation/native";
 
-import { VerticalView } from "../../styled-components";
+import {
+  LargeText,
+  MediumText,
+  SmallText,
+  VerticalView,
+} from "../../styled-components";
 
 export default function Guide({
   description,
@@ -12,8 +18,9 @@ export default function Guide({
   prev,
   next,
   number,
-  navigation,
-}) {
+}: Props): React.ReactElement<Props> {
+  const navigation = useNavigation();
+
   const handleSwipe = useCallback((gestureName: string) => {
     const { SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT } = swipeDirections;
 
@@ -30,7 +37,11 @@ export default function Guide({
     }
   }, []);
 
-  // return (
-
-  // )
+  return (
+    <VerticalView>
+      <LargeText>{name}</LargeText>
+      <MediumText>{description}</MediumText>
+      <SmallText>{number}/7</SmallText>
+    </VerticalView>
+  );
 }

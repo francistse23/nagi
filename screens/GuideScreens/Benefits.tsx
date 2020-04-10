@@ -36,9 +36,9 @@ export default function Benefits({ navigation }) {
       case SWIPE_RIGHT:
         navigation.goBack();
         break;
-      // case SWIPE_LEFT:
-      //   this.setState({backgroundColor: 'blue'});
-      //   break;
+      case SWIPE_LEFT:
+        navigation.navigate("Take a Seat");
+        break;
       default:
         break;
     }
