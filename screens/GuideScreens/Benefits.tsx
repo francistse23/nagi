@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { FlatList } from "react-native";
+import GestureRecognizer, {
+  swipeDirections,
+} from "react-native-swipe-gestures";
 
 import Constants from "../../constants";
 import {
@@ -8,9 +11,6 @@ import {
   SmallText,
   VerticalView,
 } from "../../styled-components";
-import GestureRecognizer, {
-  swipeDirections,
-} from "react-native-swipe-gestures";
 
 const { spacing } = Constants;
 
@@ -28,23 +28,21 @@ export default function Benefits({ navigation }) {
     directionalOffsetThreshold: 80,
   };
 
-  const handleSwipe = (gestureName: string) => {
+  const handleSwipe = useCallback((gestureName: string) => {
     const { SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT } = swipeDirections;
 
     switch (gestureName) {
       case SWIPE_DOWN:
       case SWIPE_RIGHT:
         navigation.goBack();
-        // console.log("dismissing");
         break;
-
       // case SWIPE_LEFT:
       //   this.setState({backgroundColor: 'blue'});
       //   break;
       default:
         break;
     }
-  };
+  }, []);
 
   return (
     <GestureRecognizer
