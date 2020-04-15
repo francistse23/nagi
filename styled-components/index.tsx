@@ -13,12 +13,12 @@ export const VerticalView = styled.View`
 
 export const LargeText = styled.Text`
   color: ${textColor};
-  font-size: ${fontSize * 3}px;
+  font-size: ${fontSize * 2.5}px;
 `;
 
 export const MediumText = styled.Text`
   color: ${textColor};
-  font-size: ${fontSize * 2}px;
+  font-size: ${fontSize * 1.8}px;
 `;
 
 export const SmallText = styled.Text`

@@ -1,6 +1,10 @@
 import React, { useCallback, useMemo } from "react";
 import { FlatList } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  CardStyleInterpolators,
+  createStackNavigator,
+} from "@react-navigation/stack";
+
 import Benefits from "../screens/GuideScreens/Benefits";
 import Guide from "../screens/GuideScreens/Guide";
 
@@ -73,7 +77,14 @@ export default function GuideStackNavigator() {
         )[0];
 
         return (
-          <Stack.Screen key={index} name={screenName}>
+          <Stack.Screen
+            key={index}
+            name={screenName}
+            options={{
+              title: "Profile",
+              cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+            }}
+          >
             {(props) => (
               <Guide
                 {...props}
