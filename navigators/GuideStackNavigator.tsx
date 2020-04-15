@@ -52,9 +52,9 @@ export default function GuideStackNavigator() {
         const guide = {
           description: guideItems[i][1],
           image: guideItems[i][2],
-          next: i === guideItems.length - 1 ? null : guideItems[i + 1][0],
+          next: i === guideItems.length - 1 ? "Home" : guideItems[i + 1][0],
           number: i + 1,
-          prev: i === 0 ? null : guideItems[i - 1][0],
+          prev: i === 0 ? "Home" : guideItems[i - 1][0],
         };
 
         guides.push({ [guideItems[i][0]]: guide });
@@ -99,7 +99,6 @@ export default function GuideStackNavigator() {
           </Stack.Screen>
         );
       })}
-      {/* <Stack.Screen name="Take a Seat" component={Guide} /> */}
     </Stack.Navigator>
   );
 }
