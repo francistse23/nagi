@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Dimensions,
-  Image,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import HomeScreen from "../screens/HomeScreen";

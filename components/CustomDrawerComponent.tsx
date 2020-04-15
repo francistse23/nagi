@@ -37,7 +37,7 @@ export default function CustomDrawerContent(props) {
           props.navigation.navigate("Guide", { screen: "Benefits" })
         }
       />
-      <DrawerItem
+      {/* <DrawerItem
         icon={() => (
           <Image
             source={require("../assets/tips.png")}
@@ -46,7 +46,7 @@ export default function CustomDrawerContent(props) {
         )}
         label={() => <Text style={styles.label}>Tips</Text>}
         // onPress={() => props.navigation.navigate("Home")}
-      />
+      /> */}
       <DrawerItem
         icon={() => (
           <Image
