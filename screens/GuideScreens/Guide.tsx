@@ -18,8 +18,13 @@ export default function Guide({
   prev,
   next,
   number,
-}: Props): React.ReactElement<Props> {
+}): React.ReactElement {
   const navigation = useNavigation();
+
+  const config = {
+    velocityThreshold: 0.3,
+    directionalOffsetThreshold: 80,
+  };
 
   const handleSwipe = useCallback((gestureName: string) => {
     const { SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT } = swipeDirections;
@@ -28,6 +33,7 @@ export default function Guide({
       case SWIPE_DOWN:
       case SWIPE_RIGHT:
         navigation.goBack();
+        // console.log("going back");
         break;
       // case SWIPE_LEFT:
       //   this.setState({backgroundColor: 'blue'});
@@ -38,10 +44,16 @@ export default function Guide({
   }, []);
 
   return (
-    <VerticalView>
-      <LargeText>{name}</LargeText>
-      <MediumText>{description}</MediumText>
-      <SmallText>{number}/7</SmallText>
-    </VerticalView>
+    <GestureRecognizer
+      config={config}
+      onSwipe={(direction) => handleSwipe(direction)}
+      style={{ flex: 1 }}
+    >
+      <VerticalView>
+        <LargeText>{name}</LargeText>
+        <MediumText>{description}</MediumText>
+        <SmallText>{number}/7</SmallText>
+      </VerticalView>
+    </GestureRecognizer>
   );
 }

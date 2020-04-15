@@ -25,7 +25,7 @@ export default function DrawerNavigator(props) {
       drawerContent={(props) => <CustomDrawerContent {...props} />}
       drawerStyle={styles.drawerStyle}
       drawerType="slide"
-      edgeWidth={width * 0.4}
+      edgeWidth={width * 0.2}
       initialRouteName="Home"
     >
       <Drawer.Screen name="Home" component={HomeScreen} />

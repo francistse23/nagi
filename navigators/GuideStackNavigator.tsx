@@ -69,24 +69,25 @@ export default function GuideStackNavigator() {
     <Stack.Navigator headerMode="none" initialRouteName="Benefits">
       <Stack.Screen name="Benefits" component={Benefits} />
       {guides.map((guide, index) => {
-        const [screenName] = Object.keys(guide);
+        const [screenName]: string[] = Object.keys(guide);
         const { description, image, next, number, prev } = Object.values(
           guide
         )[0];
 
-        const component = (
-          <Guide
-            description={description}
-            image={image}
-            name={screenName}
-            next={next}
-            number={number}
-            prev={prev}
-          />
-        );
-
         return (
-          <Stack.Screen key={index} name={screenName} component={component} />
+          <Stack.Screen key={index} name={screenName}>
+            {(props) => (
+              <Guide
+                {...props}
+                description={description}
+                image={image}
+                name={screenName}
+                next={next}
+                number={number}
+                prev={prev}
+              />
+            )}
+          </Stack.Screen>
         );
       })}
       {/* <Stack.Screen name="Take a Seat" component={Guide} /> */}
