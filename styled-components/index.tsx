@@ -4,9 +4,11 @@ import Constants from "../constants";
 const { fontSize, mainColor, textColor } = Constants;
 
 export const VerticalView = styled.View`
+  align-items: center;
   background-color: ${mainColor};
   flex: 1;
   justify-content: center;
+  padding: ${fontSize * 1.5}px;
 `;
 
 export const LargeText = styled.Text`

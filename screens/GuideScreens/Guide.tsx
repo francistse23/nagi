@@ -1,9 +1,11 @@
 import React, { useCallback, useMemo } from "react";
+import { Image } from "react-native";
 import GestureRecognizer, {
   swipeDirections,
 } from "react-native-swipe-gestures";
 import { useNavigation } from "@react-navigation/native";
 
+import { scale, verticalScale } from "../../utilities/scale";
 import {
   LargeText,
   MediumText,
@@ -31,13 +33,14 @@ export default function Guide({
 
     switch (gestureName) {
       case SWIPE_DOWN:
-      case SWIPE_RIGHT:
-        navigation.goBack();
-        // console.log("going back");
+        navigation.popToTop();
         break;
-      // case SWIPE_LEFT:
-      //   this.setState({backgroundColor: 'blue'});
-      //   break;
+      case SWIPE_RIGHT:
+        navigation.navigate(prev);
+        break;
+      case SWIPE_LEFT:
+        navigation.navigate(next);
+        break;
       default:
         break;
     }
@@ -49,8 +52,12 @@ export default function Guide({
       onSwipe={(direction) => handleSwipe(direction)}
       style={{ flex: 1 }}
     >
-      <VerticalView>
+      <VerticalView style={{ justifyContent: "space-between" }}>
         <LargeText>{name}</LargeText>
+        <Image
+          source={image}
+          style={{ height: verticalScale(250), width: scale(175) }}
+        />
         <MediumText>{description}</MediumText>
         <SmallText>{number}/7</SmallText>
       </VerticalView>

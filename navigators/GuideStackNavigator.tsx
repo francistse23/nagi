@@ -11,12 +11,12 @@ export default function GuideStackNavigator() {
     [
       "Take a Seat",
       "Find a place to sit (or lie down) that feels calm and quiet to you",
-      "../assets/sitting.png",
+      require("../assets/sitting.png"),
     ],
     [
       "Set a Time limit",
       "If you are just beginning, it can help to choose a short time, such as 5 or 10 minutes",
-      "../assets/stopwatch.png",
+      require("../assets/stopwatch.png"),
     ],
     [
       "Notice Your Body",
@@ -62,8 +62,6 @@ export default function GuideStackNavigator() {
   );
 
   const guides = useMemo(() => compileGuide(guideItems), [guideItems]);
-
-  console.log(guides);
 
   return (
     <Stack.Navigator headerMode="none" initialRouteName="Benefits">
