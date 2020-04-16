@@ -1,24 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import { FlatList, Picker } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import RNPickerSelect from "react-native-picker-select";
 
 import Constants from "../../constants";
-import { scale, verticalScale } from "../../utilities/scale";
-import {
-  LargeText,
-  MediumText,
-  SmallText,
-  VerticalView,
-} from "../../styled-components";
+import { Button, MediumText, SmallText } from "../../styled-components";
 
-const {
-  buttonColor,
-  mainColor,
-  secondaryColor,
-  spacing,
-  textColor,
-} = Constants;
+const { mainColor, secondaryColor, spacing } = Constants;
 
-export default function ChooseTimeScreen() {
+export default function ChooseTimeScreen({ navigation }) {
+  // const [isTimePickerVisible, setTimePickerVisible] = useState(false);
+
+  const options = [2, 5, 10, null];
+
+  const pickerOptions = [...Array(60)].map((_, i) => {
+    return { label: `${i + 1} Minutes`, value: Number(i + 1) };
+  });
+
   return (
     <LinearGradient
       colors={[secondaryColor, mainColor]}
@@ -31,9 +29,32 @@ export default function ChooseTimeScreen() {
         width: "100%",
       }}
     >
-      <MediumText>
+      <MediumText style={{ marginVertical: spacing * 3 }}>
         Please choose how long you would like to meditate today
       </MediumText>
+
+      {/* {isTimePickerVisible ? (
+        <RNPickerSelect
+          items={pickerOptions}
+          onValueChange={(value) => navigation.navigate("Meditation", {time: value})}
+        />
+      ) : null} */}
+
+      <FlatList
+        data={options}
+        keyExtractor={(item, index) => String(index)}
+        renderItem={({ item }) => (
+          <Button
+            onPress={() => {
+              item ? navigation.navigate("Meditation", { time: item }) : null;
+              // : setTimePickerVisible(true);
+            }}
+            style={{ marginVertical: spacing }}
+          >
+            <SmallText>{item ? `${item} Minutes` : "Custom"}</SmallText>
+          </Button>
+        )}
+      />
     </LinearGradient>
   );
 }
