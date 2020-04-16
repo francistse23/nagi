@@ -1,23 +1,12 @@
 import React from "react";
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  SafeAreaView,
-} from "react-native";
+import { Image, StyleSheet, Text, SafeAreaView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
+import { Button } from "../styled-components";
 import Constants from "../constants";
 import { scale, verticalScale } from "../utilities/scale";
 
-const {
-  buttonColor,
-  mainColor,
-  secondaryColor,
-  spacing,
-  textColor,
-} = Constants;
+const { mainColor, secondaryColor, textColor } = Constants;
 
 export default function HomeScreen({ navigation }) {
   return (
@@ -62,29 +51,17 @@ export default function HomeScreen({ navigation }) {
         >
           "Quiet the mind, and the soul will speak."
         </Text>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Meditation")}
-          style={styles.button}
-        >
+        <Button onPress={() => navigation.navigate("Meditation")}>
           <Text style={{ color: textColor, fontSize: scale(30) }}>
             Start Meditating
           </Text>
-        </TouchableOpacity>
+        </Button>
       </LinearGradient>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  button: {
-    alignItems: "center",
-    backgroundColor: buttonColor,
-    borderRadius: scale(15),
-    height: verticalScale(90),
-    justifyContent: "center",
-    marginVertical: verticalScale(spacing),
-    width: scale(300),
-  },
   container: {
     alignItems: "center",
     flex: 1,

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import Constants from "../constants";
+import { scale, verticalScale } from "../utilities/scale";
 
-const { fontSize, mainColor, textColor } = Constants;
+const { buttonColor, fontSize, mainColor, spacing, textColor } = Constants;
 
 export const VerticalView = styled.View`
   align-items: center;
@@ -26,4 +27,14 @@ export const MediumText = styled.Text`
 export const SmallText = styled.Text`
   color: ${textColor};
   font-size: ${fontSize * 1.5}px;
+`;
+
+export const Button = styled.TouchableOpacity`
+  align-items: center;
+  background-color: ${buttonColor};
+  border-radius: ${scale(15)}px;
+  height: ${verticalScale(90)}px;
+  justify-content: center;
+  margin-vertical: ${verticalScale(spacing)}px;
+  width: ${scale(300)}px;
 `;
