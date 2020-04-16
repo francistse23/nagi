@@ -10,7 +10,7 @@ const { mainColor, secondaryColor, spacing } = Constants;
 export default function ChooseTimeScreen({ navigation }) {
   // const [isTimePickerVisible, setTimePickerVisible] = useState(false);
 
-  const options = [2, 5, 10, null];
+  const options = [2, 5, 10];
 
   return (
     <LinearGradient
