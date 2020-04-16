@@ -11,7 +11,7 @@ const Drawer = createDrawerNavigator();
 
 const width = Dimensions.get("window").width;
 
-export default function DrawerNavigator(props) {
+export default function DrawerNavigator() {
   return (
     <Drawer.Navigator
       backBehavior="history"

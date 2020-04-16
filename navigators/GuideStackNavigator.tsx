@@ -24,7 +24,7 @@ export default function GuideStackNavigator() {
     ],
     [
       "Notice Your Body",
-      "You can sit in a chair with your feet on the floor, you can sit loosely cross-legged, you can kneel - all are fine. Just make sure you are stable and in a position you can stay in for a while",
+      "It doesn't matter how you lie or sit, just make sure you are stable and in a position you can stay in for a while",
     ],
     [
       "Feel Your Breath",
@@ -32,7 +32,7 @@ export default function GuideStackNavigator() {
     ],
     [
       "Notice When Your Mind Has Wandered",
-      "Inevitably, your attention will leave the breath and wander to other places. When you get around to noticing that your mind has wandered - in a few seconds, a minute, 5 minutes - simply return your attention to the breath",
+      "Inevitably, your attention will wander to other places. When you have noticed that, simply return your attention to the breath",
     ],
     [
       "Be Kind to Your Wandering Mind",
@@ -40,7 +40,7 @@ export default function GuideStackNavigator() {
     ],
     [
       "Close with Kindness",
-      "When you're ready, gently lift your gaze (if your eyes are closed, open them). Take a moment and notice any sounds in the environment. Notice how your thoughts and emotions",
+      "When you're ready, gently lift your gaze (if your eyes are closed, open them). Take a moment and notice your thoughts and emotions",
     ],
   ];
 

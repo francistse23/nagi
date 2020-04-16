@@ -8,7 +8,7 @@ export const VerticalView = styled.View`
   background-color: ${mainColor};
   flex: 1;
   justify-content: center;
-  padding: ${fontSize * 1.5}px;
+  padding: ${fontSize * 3}px;
 `;
 
 export const LargeText = styled.Text`
@@ -19,6 +19,8 @@ export const LargeText = styled.Text`
 export const MediumText = styled.Text`
   color: ${textColor};
   font-size: ${fontSize * 1.8}px;
+  text-align-vertical: center;
+  text-align: center;
 `;
 
 export const SmallText = styled.Text`

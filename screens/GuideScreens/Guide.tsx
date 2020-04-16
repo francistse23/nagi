@@ -58,7 +58,9 @@ export default function Guide({
           source={image}
           style={{ height: verticalScale(250), width: scale(175) }}
         />
-        <MediumText>{description}</MediumText>
+        <MediumText adjustsFontSizeToFit numberOfLines={7}>
+          {description}
+        </MediumText>
         <SmallText>{number}/7</SmallText>
       </VerticalView>
     </GestureRecognizer>
