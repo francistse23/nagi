@@ -54,7 +54,7 @@ export default function GuideStackNavigator() {
           image: guideItems[i][2],
           next: i === guideItems.length - 1 ? "Home" : guideItems[i + 1][0],
           number: i + 1,
-          prev: i === 0 ? "Home" : guideItems[i - 1][0],
+          prev: i === 0 ? "Benefits" : guideItems[i - 1][0],
         };
 
         guides.push({ [guideItems[i][0]]: guide });
