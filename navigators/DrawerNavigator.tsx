@@ -5,6 +5,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import HomeScreen from "../screens/HomeScreen";
 import CustomDrawerContent from "../components/CustomDrawerComponent";
 import GuideStackNavigator from "./GuideStackNavigator";
+import MeditationStackNavigator from "./MeditationStackNavigator";
 import Constants from "../constants";
 
 const Drawer = createDrawerNavigator();
@@ -23,6 +24,7 @@ export default function DrawerNavigator() {
     >
       <Drawer.Screen name="Home" component={HomeScreen} />
       <Drawer.Screen name="Guide" component={GuideStackNavigator} />
+      <Drawer.Screen name="Meditation" component={MeditationStackNavigator} />
     </Drawer.Navigator>
   );
 }

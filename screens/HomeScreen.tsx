@@ -19,12 +19,12 @@ const {
   textColor,
 } = Constants;
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
         colors={[secondaryColor, mainColor]}
-        end={[0, 0.6]}
+        end={[0, 0.7]}
         style={{
           alignItems: "center",
           flex: 1,
@@ -62,7 +62,10 @@ export default function HomeScreen() {
         >
           "Quiet the mind, and the soul will speak."
         </Text>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Meditation")}
+          style={styles.button}
+        >
           <Text style={{ color: textColor, fontSize: scale(30) }}>
             Start Meditating
           </Text>

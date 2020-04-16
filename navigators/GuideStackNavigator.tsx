@@ -1,5 +1,4 @@
 import React, { useCallback, useMemo } from "react";
-import { FlatList } from "react-native";
 import {
   CardStyleInterpolators,
   createStackNavigator,
