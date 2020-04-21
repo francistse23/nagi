@@ -14,7 +14,7 @@ import {
 
 const { buttonColor, mainColor, secondaryColor, spacing } = Constants;
 
-export default function MeditationScreen({ route }) {
+export default function MeditationScreen({ route, navigation }) {
   const { time } = route.params;
 
   const [timerRunning, setTimerRunning] = useState(false);
@@ -48,6 +48,8 @@ export default function MeditationScreen({ route }) {
   useEffect(() => {
     if (timeRemaining <= 0) {
       setTimerRunning(false);
+      navigation.navigate("End");
+      // navigate to "quotes" page
     }
   }, [timeRemaining]);
 
