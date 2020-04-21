@@ -58,7 +58,10 @@ export default function MeditationScreen({ route }) {
       }}
     >
       <LargeText>{calculateTimeRemaining(timeRemaining)}</LargeText>
-      <TouchableOpacity style={styles.startButton}>
+      <TouchableOpacity
+        onPress={() => setTimerRunning((state) => !state)}
+        style={styles.startButton}
+      >
         <SmallText>{!timerRunning ? "Start" : "Pause"}</SmallText>
       </TouchableOpacity>
       <DangerButton>
