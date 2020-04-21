@@ -45,6 +45,12 @@ export default function MeditationScreen({ route }) {
     return () => clearInterval(runTimer);
   }, [timerRunning]);
 
+  useEffect(() => {
+    if (timeRemaining <= 0) {
+      setTimerRunning(false);
+    }
+  }, [timeRemaining]);
+
   return (
     <LinearGradient
       colors={[secondaryColor, mainColor]}
