@@ -2,7 +2,14 @@ import styled from "styled-components";
 import Constants from "../constants";
 import { scale, verticalScale } from "../utilities/scale";
 
-const { buttonColor, fontSize, mainColor, spacing, textColor } = Constants;
+const {
+  buttonColor,
+  dangerColor,
+  fontSize,
+  mainColor,
+  spacing,
+  textColor,
+} = Constants;
 
 export const VerticalView = styled.View`
   align-items: center;
@@ -37,4 +44,14 @@ export const Button = styled.TouchableOpacity`
   justify-content: center;
   margin-vertical: ${verticalScale(spacing)}px;
   width: ${scale(300)}px;
+`;
+
+export const DangerButton = styled.TouchableOpacity`
+  align-items: center;
+  background-color: ${dangerColor};
+  border-radius: ${scale(15)}px;
+  height: ${verticalScale(70)}px;
+  justify-content: center;
+  margin-vertical: ${verticalScale(spacing)}px;
+  width: ${scale(200)}px;
 `;

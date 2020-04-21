@@ -38,7 +38,11 @@ export default function ChooseTimeScreen({ navigation }) {
         renderItem={({ item }) => (
           <Button
             onPress={() => {
-              item ? navigation.navigate("Meditation", { time: item }) : null;
+              item
+                ? navigation.navigate("Meditation", {
+                    time: item * 60,
+                  })
+                : null;
             }}
             style={{ marginVertical: spacing }}
           >
