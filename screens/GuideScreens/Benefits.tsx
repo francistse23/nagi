@@ -61,6 +61,7 @@ export default function Benefits({ navigation }) {
             <SmallText style={{ marginVertical: spacing }}>- {item}</SmallText>
           )}
         />
+        <SmallText>Swipe left to continue</SmallText>
       </VerticalView>
     </GestureRecognizer>
   );

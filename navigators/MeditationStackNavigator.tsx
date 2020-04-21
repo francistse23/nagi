@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import ChooseTimeScreen from "../screens/MeditateScreens/ChooseTimeScreen";
+import ChooseTimeScreen from "../screens/MeditationScreens/ChooseTimeScreen";
 
 const Stack = createStackNavigator();
 

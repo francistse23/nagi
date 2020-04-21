@@ -29,6 +29,10 @@ export default function ChooseTimeScreen({ navigation }) {
       </MediumText>
 
       <FlatList
+        contentContainerStyle={{
+          flex: 3,
+          justifyContent: "space-between",
+        }}
         data={options}
         keyExtractor={(item, index) => String(index)}
         renderItem={({ item }) => (
