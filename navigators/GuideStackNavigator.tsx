@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useMemo } from "react";
 import {
   CardStyleInterpolators,
   createStackNavigator,
@@ -43,26 +43,23 @@ export default function GuideStackNavigator() {
     ],
   ];
 
-  const compileGuide = useCallback(
-    (guideItems: any[]) => {
-      const guides = [];
+  const compileGuide = (guideItems: any[]) => {
+    const guides = [];
 
-      for (let i = 0; i < guideItems.length; i++) {
-        const guide = {
-          description: guideItems[i][1],
-          image: guideItems[i][2],
-          next: i === guideItems.length - 1 ? "Home" : guideItems[i + 1][0],
-          number: i + 1,
-          prev: i === 0 ? "Benefits" : guideItems[i - 1][0],
-        };
+    for (let i = 0; i < guideItems.length; i++) {
+      const guide = {
+        description: guideItems[i][1],
+        image: guideItems[i][2],
+        next: i === guideItems.length - 1 ? "Home" : guideItems[i + 1][0],
+        number: i + 1,
+        prev: i === 0 ? "Benefits" : guideItems[i - 1][0],
+      };
 
-        guides.push({ [guideItems[i][0]]: guide });
-      }
+      guides.push({ [guideItems[i][0]]: guide });
+    }
 
-      return guides;
-    },
-    [guideItems]
-  );
+    return guides;
+  };
 
   const guides = useMemo(() => compileGuide(guideItems), [guideItems]);
 

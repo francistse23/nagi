@@ -36,7 +36,7 @@ export const quotes = [
   {
     quote:
       "Touch your inner space, which is nothingness, as silent and empty as the sky; it is your inner sky. Once you settle down in your inner sky, you have come home, and a great maturity arises in your actions, in your behavior. Then whatever you do has grace in it. Then whatever you do is a poetry in itself. You live poetry; your walking becomes dancing, your silence becomes music.",
-    author: "",
+    author: "Osho Akash",
   },
   {
     quote:

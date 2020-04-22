@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React from "react";
 import { Image } from "react-native";
 import GestureRecognizer, {
   swipeDirections,
@@ -28,7 +28,7 @@ export default function Guide({
     directionalOffsetThreshold: 80,
   };
 
-  const handleSwipe = useCallback((gestureName: string) => {
+  const handleSwipe = (gestureName: string) => {
     const { SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT } = swipeDirections;
 
     switch (gestureName) {
@@ -44,7 +44,7 @@ export default function Guide({
       default:
         break;
     }
-  }, []);
+  };
 
   return (
     <GestureRecognizer
