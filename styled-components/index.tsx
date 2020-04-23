@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/native";
 import Constants from "../constants";
 import { scale, verticalScale } from "../utilities/scale";
 
