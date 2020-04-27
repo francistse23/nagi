@@ -4,13 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import { scale } from "../../utilities/scale";
 import Constants from "../../constants";
-import {
-  Button,
-  DangerButton,
-  LargeText,
-  MediumText,
-  SmallText,
-} from "../../styled-components";
+import { DangerButton, LargeText, SmallText } from "../../styled-components";
 
 const { buttonColor, mainColor, secondaryColor, spacing } = Constants;
 
@@ -20,11 +14,11 @@ export default function MeditationScreen({ route, navigation }) {
   const [timerRunning, setTimerRunning] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(time);
 
-  const calculateTimeRemaining = (time) => {
+  const calculateTimeRemaining = (time: number) => {
     const mins = Math.floor(time / 60);
     const seconds = time % 60;
 
-    return `${mins > 10 ? mins : `0${mins}`}:${
+    return `${mins >= 10 ? mins : `0${mins}`}:${
       seconds.toString().length > 1 ? seconds : `0${seconds}`
     }`;
   };
@@ -75,6 +69,8 @@ export default function MeditationScreen({ route, navigation }) {
       <DangerButton>
         <SmallText>Leave Session</SmallText>
       </DangerButton>
+      {/* leave session modal */}
+      {/* set timerRunning to false */}
     </LinearGradient>
   );
 }

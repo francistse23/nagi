@@ -1,2 +1,3 @@
-# francistse23
-Meditation App
+# Nagi
+
+## Just a simple meditation timer
