@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Modal, StyleSheet, TouchableOpacity } from "react-native";
+import { Modal, StyleSheet, TouchableOpacity, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { scale } from "../../utilities/scale";
@@ -11,6 +11,7 @@ const { buttonColor, mainColor, secondaryColor, spacing } = Constants;
 export default function MeditationScreen({ route, navigation }) {
   const { time } = route.params;
 
+  const [modalVisible, setModalVisible] = useState(false);
   const [timerRunning, setTimerRunning] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(time);
 
@@ -43,7 +44,6 @@ export default function MeditationScreen({ route, navigation }) {
     if (timeRemaining <= 0) {
       setTimerRunning(false);
       navigation.navigate("End");
-      // navigate to "quotes" page
     }
   }, [timeRemaining]);
 
@@ -66,11 +66,40 @@ export default function MeditationScreen({ route, navigation }) {
       >
         <SmallText>{!timerRunning ? "Start" : "Pause"}</SmallText>
       </TouchableOpacity>
-      <DangerButton>
+      <DangerButton onPress={() => setModalVisible(true)}>
         <SmallText>Leave Session</SmallText>
       </DangerButton>
       {/* leave session modal */}
       {/* set timerRunning to false */}
+      <Modal
+        animationType="fade"
+        onShow={() => setTimerRunning(false)}
+        visible={modalVisible}
+      >
+        <View>
+          <LargeText>Do you want to leave this session?</LargeText>
+          <View
+            style={{
+              alignItems: "center",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <TouchableOpacity
+              onPress={() => {
+                setModalVisible(false);
+                navigation.popToTop();
+                navigation.navigate("Home");
+              }}
+            >
+              <SmallText>Yes</SmallText>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setModalVisible(false)}>
+              <SmallText>No</SmallText>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </LinearGradient>
   );
 }
