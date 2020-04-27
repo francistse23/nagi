@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Modal, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image, Modal, StyleSheet, TouchableOpacity, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Audio } from "expo-av";
 
@@ -50,17 +50,19 @@ export default function MeditationScreen({ route, navigation }) {
     };
 
     // gradually reduces the volume as the timer is close to expire
-    if (timeRemaining <= 60) {
+    if (timeRemaining <= 60 && timeRemaining > 30) {
       playbackObject.sound.setVolumeAsync(0.5);
-    } else if (timeRemaining <= 30) {
+    } else if (timeRemaining <= 30 && timeRemaining > 15) {
       playbackObject.sound.setVolumeAsync(0.25);
+    } else if (timeRemaining <= 15) {
+      playbackObject.sound.setVolumeAsync(0.15);
     }
 
     if (timeRemaining <= 0) {
       setTimerRunning(false);
       setTimeRemaining(0);
       pauseAndUnloadAudio();
-      timeoutNavigate = setTimeout(navigation.navigate("End"), 2500);
+      timeoutNavigate = setTimeout(navigation.navigate("End"), 3500);
     }
 
     return clearTimeout(timeoutNavigate);
@@ -75,7 +77,7 @@ export default function MeditationScreen({ route, navigation }) {
         })
       );
 
-      if (!playbackLoaded) {
+      if (playbackObject && !playbackLoaded) {
         await playbackObject.sound.loadAsync();
         setPlaybackLoaded(true);
       }
@@ -91,13 +93,7 @@ export default function MeditationScreen({ route, navigation }) {
     <LinearGradient
       colors={[secondaryColor, mainColor]}
       end={[0, 0.7]}
-      style={{
-        alignItems: "center",
-        flex: 1,
-        justifyContent: "space-around",
-        paddingVertical: "10%",
-        width: "100%",
-      }}
+      style={styles.container}
     >
       <LargeText>{calculateTimeRemaining(timeRemaining)}</LargeText>
       <TouchableOpacity
@@ -108,24 +104,42 @@ export default function MeditationScreen({ route, navigation }) {
       </TouchableOpacity>
 
       {playbackObject ? (
-        <DangerButton
-          onPress={() =>
+        <TouchableOpacity
+          onPress={
             isPlaying
-              ? playbackObject.sound.pauseAsync()
-              : playbackObject.sound.playAsync()
+              ? () => {
+                  playbackObject.sound.pauseAsync();
+                  setIsPlaying(false);
+                }
+              : () => {
+                  playbackObject.sound.playAsync();
+                  setIsPlaying(true);
+                }
           }
         >
-          <SmallText>music</SmallText>
-        </DangerButton>
+          {isPlaying ? (
+            <Image
+              source={require("../../assets/music_off.png")}
+              style={styles.icon}
+            />
+          ) : (
+            <Image
+              source={require("../../assets/music_on.png")}
+              style={styles.icon}
+            />
+          )}
+        </TouchableOpacity>
       ) : null}
 
       <DangerButton onPress={() => setModalVisible(true)}>
         <SmallText>Leave Session</SmallText>
       </DangerButton>
+
       {/* leave session modal */}
       <Modal
         animationType="fade"
         onShow={() => setTimerRunning(false)}
+        transparent
         visible={modalVisible}
       >
         <LinearGradient
@@ -169,6 +183,17 @@ export default function MeditationScreen({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    flex: 1,
+    justifyContent: "space-around",
+    paddingVertical: "10%",
+    width: "100%",
+  },
+  icon: {
+    height: scale(45),
+    width: scale(45),
+  },
   startButton: {
     alignItems: "center",
     backgroundColor: buttonColor,
