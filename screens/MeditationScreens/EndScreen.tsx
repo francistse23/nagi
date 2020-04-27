@@ -2,9 +2,13 @@ import React from "react";
 import GestureRecognizer, {
   swipeDirections,
 } from "react-native-swipe-gestures";
+import { LinearGradient } from "expo-linear-gradient";
+import Constants from "../../constants";
 
 import { quotes } from "../../constants/quotes";
-import { SmallText, VerticalView } from "../../styled-components";
+import { SmallText } from "../../styled-components";
+
+const { mainColor, secondaryColor } = Constants;
 
 export default function EndScreen({ navigation }) {
   // 0 - 11
@@ -37,12 +41,22 @@ export default function EndScreen({ navigation }) {
       onSwipe={(direction) => handleSwipe(direction)}
       style={{ flex: 1 }}
     >
-      <VerticalView>
+      <LinearGradient
+        colors={[secondaryColor, mainColor]}
+        end={[0, 0.7]}
+        style={{
+          alignItems: "center",
+          flex: 1,
+          justifyContent: "center",
+          padding: "10%",
+          width: "100%",
+        }}
+      >
         <SmallText>"{quotes[index].quote}"</SmallText>
         <SmallText style={{ alignSelf: "flex-end", paddingVertical: 16 }}>
           - {quotes[index].author}
         </SmallText>
-      </VerticalView>
+      </LinearGradient>
     </GestureRecognizer>
   );
 }
