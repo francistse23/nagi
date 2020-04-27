@@ -4,6 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Audio } from "expo-av";
 
 import { scale } from "../../utilities/scale";
+import calculateTimeRemaining from "../../utilities/calculateTimeRemaining";
 import Constants from "../../constants";
 import {
   DangerButton,
@@ -24,15 +25,6 @@ export default function MeditationScreen({ route, navigation }) {
   const [timerRunning, setTimerRunning] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(time);
 
-  const calculateTimeRemaining = (time: number) => {
-    const mins = Math.floor(time / 60);
-    const seconds = time % 60;
-
-    return `${mins >= 10 ? mins : `0${mins}`}:${
-      seconds.toString().length > 1 ? seconds : `0${seconds}`
-    }`;
-  };
-
   const countDown = () => {
     setTimeRemaining((timeRemaining) => timeRemaining - 1);
   };
@@ -50,16 +42,28 @@ export default function MeditationScreen({ route, navigation }) {
   }, [timerRunning]);
 
   useEffect(() => {
-    if (timeRemaining <= 10) {
-      playbackObject.sound.setVolumeAsync(0.1);
+    let timeoutNavigate;
+
+    const pauseAndUnloadAudio = async () => {
+      await playbackObject.sound.pauseAsync();
+      await playbackObject.sound.unloadAsync();
+    };
+
+    // gradually reduces the volume as the timer is close to expire
+    if (timeRemaining <= 60) {
+      playbackObject.sound.setVolumeAsync(0.5);
+    } else if (timeRemaining <= 30) {
+      playbackObject.sound.setVolumeAsync(0.25);
     }
 
     if (timeRemaining <= 0) {
       setTimerRunning(false);
-      playbackObject.sound.pauseAsync();
-      playbackObject.sound.unloadAsync();
-      navigation.navigate("End");
+      setTimeRemaining(0);
+      pauseAndUnloadAudio();
+      timeoutNavigate = setTimeout(navigation.navigate("End"), 2500);
     }
+
+    return clearTimeout(timeoutNavigate);
   }, [timeRemaining]);
 
   useEffect(() => {
@@ -77,6 +81,10 @@ export default function MeditationScreen({ route, navigation }) {
       }
     }
     createPlayback();
+
+    if (playbackObject) {
+      return playbackObject.sound.unloadAysnc();
+    }
   }, []);
 
   return (
@@ -99,15 +107,17 @@ export default function MeditationScreen({ route, navigation }) {
         <SmallText>{!timerRunning ? "Start" : "Pause"}</SmallText>
       </TouchableOpacity>
 
-      <DangerButton
-        onPress={() =>
-          isPlaying
-            ? playbackObject.sound.pauseAsync()
-            : playbackObject.sound.playAsync()
-        }
-      >
-        <SmallText>music</SmallText>
-      </DangerButton>
+      {playbackObject ? (
+        <DangerButton
+          onPress={() =>
+            isPlaying
+              ? playbackObject.sound.pauseAsync()
+              : playbackObject.sound.playAsync()
+          }
+        >
+          <SmallText>music</SmallText>
+        </DangerButton>
+      ) : null}
 
       <DangerButton onPress={() => setModalVisible(true)}>
         <SmallText>Leave Session</SmallText>
@@ -144,6 +154,7 @@ export default function MeditationScreen({ route, navigation }) {
             <TouchableOpacity
               onPress={() => {
                 setModalVisible(false);
+                playbackObject.sound.unloadAsync();
                 navigation.popToTop();
                 navigation.navigate("Home");
               }}
