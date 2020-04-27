@@ -4,7 +4,12 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import { scale } from "../../utilities/scale";
 import Constants from "../../constants";
-import { DangerButton, LargeText, SmallText } from "../../styled-components";
+import {
+  DangerButton,
+  LargeText,
+  MediumText,
+  SmallText,
+} from "../../styled-components";
 
 const { buttonColor, mainColor, secondaryColor, spacing } = Constants;
 
@@ -76,13 +81,24 @@ export default function MeditationScreen({ route, navigation }) {
         onShow={() => setTimerRunning(false)}
         visible={modalVisible}
       >
-        <View>
-          <LargeText>Do you want to leave this session?</LargeText>
+        <LinearGradient
+          colors={[secondaryColor, mainColor]}
+          end={[0, 0.7]}
+          style={{
+            alignItems: "center",
+            flex: 1,
+            justifyContent: "space-around",
+            paddingVertical: "10%",
+            width: "100%",
+          }}
+        >
+          <MediumText>Do you want to leave this session?</MediumText>
           <View
             style={{
               alignItems: "center",
               flexDirection: "row",
               justifyContent: "space-between",
+              width: "60%",
             }}
           >
             <TouchableOpacity
@@ -98,7 +114,7 @@ export default function MeditationScreen({ route, navigation }) {
               <SmallText>No</SmallText>
             </TouchableOpacity>
           </View>
-        </View>
+        </LinearGradient>
       </Modal>
     </LinearGradient>
   );
