@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Modal, StyleSheet, TouchableOpacity, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { Audio } from "expo-av";
 
 import { scale } from "../../utilities/scale";
 import Constants from "../../constants";
@@ -17,6 +18,9 @@ export default function MeditationScreen({ route, navigation }) {
   const { time } = route.params;
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [playbackObject, setPlaybackObject] = useState(null);
+  const [playbackLoaded, setPlaybackLoaded] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [timerRunning, setTimerRunning] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(time);
 
@@ -39,18 +43,41 @@ export default function MeditationScreen({ route, navigation }) {
     if (timerRunning && timeRemaining > 0) {
       runTimer = setInterval(() => {
         countDown();
-      }, 1000);
+      }, 10);
     }
 
     return () => clearInterval(runTimer);
   }, [timerRunning]);
 
   useEffect(() => {
+    if (timeRemaining <= 10) {
+      playbackObject.sound.setVolumeAsync(0.1);
+    }
+
     if (timeRemaining <= 0) {
       setTimerRunning(false);
+      playbackObject.sound.pauseAsync();
+      playbackObject.sound.unloadAsync();
       navigation.navigate("End");
     }
   }, [timeRemaining]);
+
+  useEffect(() => {
+    async function createPlayback() {
+      await setPlaybackObject(
+        await Audio.Sound.createAsync(require("../../assets/audio/waves.mp3"), {
+          shouldPlay: true,
+          isLooping: true,
+        })
+      );
+
+      if (!playbackLoaded) {
+        await playbackObject.sound.loadAsync();
+        setPlaybackLoaded(true);
+      }
+    }
+    createPlayback();
+  }, []);
 
   return (
     <LinearGradient
@@ -71,11 +98,21 @@ export default function MeditationScreen({ route, navigation }) {
       >
         <SmallText>{!timerRunning ? "Start" : "Pause"}</SmallText>
       </TouchableOpacity>
+
+      <DangerButton
+        onPress={() =>
+          isPlaying
+            ? playbackObject.sound.pauseAsync()
+            : playbackObject.sound.playAsync()
+        }
+      >
+        <SmallText>music</SmallText>
+      </DangerButton>
+
       <DangerButton onPress={() => setModalVisible(true)}>
         <SmallText>Leave Session</SmallText>
       </DangerButton>
       {/* leave session modal */}
-      {/* set timerRunning to false */}
       <Modal
         animationType="fade"
         onShow={() => setTimerRunning(false)}
@@ -101,6 +138,9 @@ export default function MeditationScreen({ route, navigation }) {
               width: "60%",
             }}
           >
+            <TouchableOpacity onPress={() => setModalVisible(false)}>
+              <SmallText>No</SmallText>
+            </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
                 setModalVisible(false);
@@ -109,9 +149,6 @@ export default function MeditationScreen({ route, navigation }) {
               }}
             >
               <SmallText>Yes</SmallText>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => setModalVisible(false)}>
-              <SmallText>No</SmallText>
             </TouchableOpacity>
           </View>
         </LinearGradient>

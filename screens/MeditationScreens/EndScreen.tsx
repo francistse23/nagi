@@ -23,6 +23,7 @@ export default function EndScreen({ navigation }) {
       case SWIPE_LEFT:
       case SWIPE_RIGHT:
       case SWIPE_UP:
+        navigation.popToTop();
         navigation.navigate("Home");
         break;
       default:
