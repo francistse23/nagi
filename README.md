@@ -25,3 +25,7 @@ Please visit [Figma](https://www.figma.com/file/NKmQTJlE5gRU8AxGHq4Ggg/Meditatio
 Feel free to submit a pull request or simply message me with suggestions on how to make this app better. Any comment and/or feedback is greatly appreciated!
 
 For those who'd like to clone this repo, please visit [Expo](https://docs.expo.io/) to set up your environment if you haven't already
+
+### Disclaimer
+
+I do not own any of the media used for this app. Credit goes to the original creators of those content. If you see your work being used in this app and you would like that taken down, please let me know and I will remove it as soon as possible. Thank you!

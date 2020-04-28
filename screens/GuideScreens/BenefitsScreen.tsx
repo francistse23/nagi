@@ -1,14 +1,15 @@
 import React from "react";
-import { FlatList } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import GestureRecognizer, {
   swipeDirections,
 } from "react-native-swipe-gestures";
+import { LinearGradient } from "expo-linear-gradient";
 
 import Constants from "../../constants";
-import { MediumText, SmallText, VerticalView } from "../../styled-components";
+import { MediumText, SmallText } from "../../styled-components";
 
-const { spacing } = Constants;
+const { mainColor, secondaryColor, spacing } = Constants;
 
 export default function BenefitsScreen(): React.ReactElement {
   const { goBack, navigate } = useNavigation();
@@ -48,7 +49,11 @@ export default function BenefitsScreen(): React.ReactElement {
       onSwipe={(direction) => handleSwipe(direction)}
       style={{ flex: 1 }}
     >
-      <VerticalView style={{ padding: spacing * 4 }}>
+      <LinearGradient
+        colors={[secondaryColor, mainColor]}
+        end={[0, 0.7]}
+        style={styles.container}
+      >
         <MediumText style={{ marginBottom: spacing * 2 }}>
           Some of the benefits of meditating...
         </MediumText>
@@ -60,7 +65,17 @@ export default function BenefitsScreen(): React.ReactElement {
           )}
         />
         <SmallText>Swipe left to continue</SmallText>
-      </VerticalView>
+      </LinearGradient>
     </GestureRecognizer>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    flex: 1,
+    justifyContent: "space-around",
+    paddingVertical: "10%",
+    width: "100%",
+  },
+});
