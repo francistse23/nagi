@@ -68,13 +68,17 @@ export default function MeditationScreen({ route, navigation }) {
     return clearTimeout(timeoutNavigate);
   }, [timeRemaining]);
 
+  // loads audio on component mount
   useEffect(() => {
     async function createPlayback() {
       await setPlaybackObject(
-        await Audio.Sound.createAsync(require("../../assets/audio/waves.mp3"), {
-          shouldPlay: true,
-          isLooping: true,
-        })
+        await Audio.Sound.createAsync(
+          require("../../assets/audio/nature.mp3"),
+          {
+            shouldPlay: true,
+            isLooping: true,
+          }
+        )
       );
 
       if (playbackObject && !playbackLoaded) {

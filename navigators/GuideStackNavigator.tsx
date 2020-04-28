@@ -4,8 +4,8 @@ import {
   createStackNavigator,
 } from "@react-navigation/stack";
 
-import Benefits from "../screens/GuideScreens/Benefits";
-import Guide from "../screens/GuideScreens/Guide";
+import BenefitsScreen from "../screens/GuideScreens/BenefitsScreen";
+import GuideScreen from "../screens/GuideScreens/GuideScreen";
 
 const Stack = createStackNavigator();
 
@@ -65,7 +65,7 @@ export default function GuideStackNavigator() {
 
   return (
     <Stack.Navigator headerMode="none" initialRouteName="Benefits">
-      <Stack.Screen name="Benefits" component={Benefits} />
+      <Stack.Screen name="Benefits" component={BenefitsScreen} />
       {guides.map((guide, index) => {
         const [screenName]: string[] = Object.keys(guide);
         const { description, image, next, number, prev } = Object.values(
@@ -82,7 +82,7 @@ export default function GuideStackNavigator() {
             }}
           >
             {(props) => (
-              <Guide
+              <GuideScreen
                 {...props}
                 description={description}
                 image={image}
