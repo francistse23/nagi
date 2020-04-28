@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     flex: 1,
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     paddingVertical: "10%",
     width: "100%",
   },

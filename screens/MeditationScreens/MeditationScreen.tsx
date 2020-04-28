@@ -35,9 +35,7 @@ export default function MeditationScreen(): React.ReactElement {
     let runTimer;
 
     if (timerRunning && timeRemaining > 0) {
-      runTimer = setInterval(() => {
-        countDown();
-      }, 10);
+      runTimer = setInterval(countDown, 10);
     }
 
     return () => clearInterval(runTimer);
@@ -53,21 +51,23 @@ export default function MeditationScreen(): React.ReactElement {
 
     // gradually reduces the volume as the timer is close to expire
     if (timeRemaining <= 60 && timeRemaining > 30) {
-      playbackObject.sound.setVolumeAsync(0.5);
+      playbackObject.sound.setVolumeAsync(0.65);
     } else if (timeRemaining <= 30 && timeRemaining > 15) {
-      playbackObject.sound.setVolumeAsync(0.25);
+      playbackObject.sound.setVolumeAsync(0.45);
     } else if (timeRemaining <= 15) {
-      playbackObject.sound.setVolumeAsync(0.15);
+      playbackObject.sound.setVolumeAsync(0.25);
     }
 
     if (timeRemaining <= 0) {
+      timeoutNavigate = setTimeout(() => {
+        navigate("End");
+      }, 2500);
       setTimerRunning(false);
       setTimeRemaining(0);
       pauseAndUnloadAudio();
-      timeoutNavigate = setTimeout(navigate("End"), 3500);
     }
 
-    return clearTimeout(timeoutNavigate);
+    return () => clearTimeout(timeoutNavigate);
   }, [timeRemaining]);
 
   // loads audio on component mount

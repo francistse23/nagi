@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -10,19 +10,13 @@ const { mainColor, secondaryColor, spacing } = Constants;
 
 export default function ChooseTimeScreen(): React.ReactElement {
   const { navigate } = useNavigation();
-  const options = [2, 5, 10];
+  const options: number[] = [2, 5, 10];
 
   return (
     <LinearGradient
       colors={[secondaryColor, mainColor]}
       end={[0, 0.7]}
-      style={{
-        alignItems: "center",
-        flex: 1,
-        justifyContent: "space-between",
-        paddingVertical: "10%",
-        width: "100%",
-      }}
+      style={styles.container}
     >
       <MediumText style={{ marginVertical: spacing * 3 }}>
         Please choose how long you would like to meditate today
@@ -37,19 +31,27 @@ export default function ChooseTimeScreen(): React.ReactElement {
         keyExtractor={(item, index) => String(index)}
         renderItem={({ item }) => (
           <Button
-            onPress={() => {
-              item
-                ? navigate("Meditation", {
-                    time: item * 60,
-                  })
-                : null;
-            }}
+            onPress={() =>
+              navigate("Meditation", {
+                time: item * 60,
+              })
+            }
             style={{ marginVertical: spacing }}
           >
-            <SmallText>{item ? `${item} Minutes` : "Custom"}</SmallText>
+            <SmallText>{`${item} Minutes`}</SmallText>
           </Button>
         )}
       />
     </LinearGradient>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    flex: 1,
+    justifyContent: "space-between",
+    paddingVertical: "10%",
+    width: "100%",
+  },
+});

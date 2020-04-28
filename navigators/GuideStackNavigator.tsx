@@ -82,7 +82,6 @@ export default function GuideStackNavigator(): React.ReactElement {
             key={index}
             name={screenName}
             options={{
-              title: "Profile",
               cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
             }}
           >
