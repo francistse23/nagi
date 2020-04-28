@@ -1,4 +1,4 @@
-export const quotes = [
+export const quotes: object[] = [
   {
     quote:
       "Feelings come and go like clouds in a windy sky. Conscious breathing is my anchor.",

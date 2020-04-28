@@ -1,18 +1,19 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 import * as WebBrowser from "expo-web-browser";
 
+import { LargeText, SmallText } from "../styled-components";
 import { scale, verticalScale } from "../utilities/scale";
 import Constants from "../constants";
 
-const { spacing, textColor } = Constants;
+const { spacing } = Constants;
 
 export default function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>Nagi</Text>
+        <LargeText>Nagi</LargeText>
         <Image source={require("../assets/nagi.png")} style={styles.icon} />
       </View>
       <DrawerItem
@@ -22,7 +23,7 @@ export default function CustomDrawerContent(props) {
             style={{ height: 41, width: 39 }}
           />
         )}
-        label={() => <Text style={styles.label}>Home</Text>}
+        label={() => <SmallText>Home</SmallText>}
         onPress={() => props.navigation.navigate("Home")}
       />
       <DrawerItem
@@ -32,21 +33,11 @@ export default function CustomDrawerContent(props) {
             style={{ height: 40, width: 39 }}
           />
         )}
-        label={() => <Text style={styles.label}>Meditating Guide</Text>}
+        label={() => <SmallText>Meditating Guide</SmallText>}
         onPress={() =>
           props.navigation.navigate("Guide", { screen: "Benefits" })
         }
       />
-      {/* <DrawerItem
-        icon={() => (
-          <Image
-            source={require("../assets/tips.png")}
-            style={{ height: 40, width: 40 }}
-          />
-        )}
-        label={() => <Text style={styles.label}>Tips</Text>}
-        // onPress={() => props.navigation.navigate("Home")}
-      /> */}
       <DrawerItem
         icon={() => (
           <Image
@@ -54,7 +45,7 @@ export default function CustomDrawerContent(props) {
             style={{ height: 39, width: 40 }}
           />
         )}
-        label={() => <Text style={styles.label}>Contact</Text>}
+        label={() => <SmallText>Contact</SmallText>}
         onPress={async () =>
           await WebBrowser.openBrowserAsync("https://francistse.me/")
         }
@@ -69,18 +60,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginVertical: verticalScale(spacing * 2),
-    paddingHorizontal: scale(spacing),
-  },
-  headerText: {
-    color: textColor,
-    fontSize: scale(55),
+    paddingHorizontal: scale(spacing * 2),
   },
   icon: {
     height: verticalScale(100),
     width: scale(100),
-  },
-  label: {
-    color: textColor,
-    fontSize: scale(20),
   },
 });

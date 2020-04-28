@@ -1,20 +1,19 @@
 import React from "react";
-import { FlatList } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import GestureRecognizer, {
   swipeDirections,
 } from "react-native-swipe-gestures";
+import { LinearGradient } from "expo-linear-gradient";
 
 import Constants from "../../constants";
-import {
-  LargeText,
-  MediumText,
-  SmallText,
-  VerticalView,
-} from "../../styled-components";
+import { MediumText, SmallText } from "../../styled-components";
 
-const { spacing } = Constants;
+const { mainColor, secondaryColor, spacing } = Constants;
 
-export default function BenefitsScreen({ navigation }) {
+export default function BenefitsScreen(): React.ReactElement {
+  const { goBack, navigate } = useNavigation();
+
   const benefits = [
     "Understand your pain",
     "Lower your stress",
@@ -34,10 +33,10 @@ export default function BenefitsScreen({ navigation }) {
     switch (gestureName) {
       case SWIPE_DOWN:
       case SWIPE_RIGHT:
-        navigation.goBack();
+        goBack();
         break;
       case SWIPE_LEFT:
-        navigation.navigate("Take a Seat");
+        navigate("Take a Seat");
         break;
       default:
         break;
@@ -50,7 +49,11 @@ export default function BenefitsScreen({ navigation }) {
       onSwipe={(direction) => handleSwipe(direction)}
       style={{ flex: 1 }}
     >
-      <VerticalView style={{ padding: spacing * 4 }}>
+      <LinearGradient
+        colors={[secondaryColor, mainColor]}
+        end={[0, 0.7]}
+        style={styles.container}
+      >
         <MediumText style={{ marginBottom: spacing * 2 }}>
           Some of the benefits of meditating...
         </MediumText>
@@ -62,7 +65,17 @@ export default function BenefitsScreen({ navigation }) {
           )}
         />
         <SmallText>Swipe left to continue</SmallText>
-      </VerticalView>
+      </LinearGradient>
     </GestureRecognizer>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    flex: 1,
+    justifyContent: "space-around",
+    paddingVertical: "10%",
+    width: "100%",
+  },
+});
