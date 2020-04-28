@@ -1,9 +1,8 @@
 {
   "expo": {
-    "name": "Blank Template (TypeScript)",
+    "name": "Nagi",
     "slug": "meditate-app",
     "privacy": "public",
-    "sdkVersion": "36.0.0",
     "platforms": [
       "ios",
       "android",
@@ -14,7 +13,7 @@
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
