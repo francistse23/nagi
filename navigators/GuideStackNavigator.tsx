@@ -24,22 +24,27 @@ export default function GuideStackNavigator() {
     [
       "Notice Your Body",
       "It doesn't matter how you lie or sit, just make sure you are stable and in a position you can stay in for a while",
+      require("../assets/comfy.png"),
     ],
     [
       "Feel Your Breath",
-      "Follow the sensation of your breah as it goes in and as it goes out",
+      "Follow the sensation of your breath as it goes in and as it goes out",
+      require("../assets/breathing.png"),
     ],
     [
       "Notice When Your Mind Has Wandered",
       "Inevitably, your attention will wander to other places. When you have noticed that, simply return your attention to the breath",
+      require("../assets/wandering-mind.jpg"),
     ],
     [
       "Be Kind to Your Wandering Mind",
       "Don't judge yourself or obsess over the content of the thoughts you find yourself lost in. Just come back",
+      require("../assets/be-kind.png"),
     ],
     [
       "Close with Kindness",
       "When you're ready, gently lift your gaze (if your eyes are closed, open them). Take a moment and notice your thoughts and emotions",
+      require("../assets/kindness.jpg"),
     ],
   ];
 

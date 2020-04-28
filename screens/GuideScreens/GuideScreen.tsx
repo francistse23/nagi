@@ -6,12 +6,7 @@ import GestureRecognizer, {
 import { useNavigation } from "@react-navigation/native";
 
 import { scale, verticalScale } from "../../utilities/scale";
-import {
-  LargeText,
-  MediumText,
-  SmallText,
-  VerticalView,
-} from "../../styled-components";
+import { MediumText, SmallText, VerticalView } from "../../styled-components";
 
 export default function GuideScreen({
   description,
@@ -53,7 +48,7 @@ export default function GuideScreen({
       style={{ flex: 1 }}
     >
       <VerticalView style={{ justifyContent: "space-between" }}>
-        <LargeText>{name}</LargeText>
+        <MediumText adjustsFontSizeToFit>{name}</MediumText>
         <Image
           source={image}
           style={{ height: verticalScale(250), width: scale(175) }}
