@@ -1,14 +1,17 @@
 import React from "react";
-import { Image, StyleSheet, Text, SafeAreaView } from "react-native";
+import { Image, StyleSheet, SafeAreaView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 
-import { Button } from "../styled-components";
+import { Button, LargeText, MediumText } from "../styled-components";
 import Constants from "../constants";
 import { scale, verticalScale } from "../utilities/scale";
 
-const { mainColor, secondaryColor, textColor } = Constants;
+const { mainColor, secondaryColor } = Constants;
 
-export default function HomeScreen({ navigation }) {
+export default function HomeScreen(): React.ReactElement {
+  const { navigate } = useNavigation();
+
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
@@ -22,16 +25,13 @@ export default function HomeScreen({ navigation }) {
           width: "100%",
         }}
       >
-        <Text
+        <LargeText
           style={{
-            color: textColor,
-            fontFamily: "Roboto",
             fontSize: scale(60),
-            textAlign: "center",
           }}
         >
           Nagi
-        </Text>
+        </LargeText>
         <Image
           source={require("../assets/nagi.png")}
           style={{
@@ -40,21 +40,11 @@ export default function HomeScreen({ navigation }) {
             width: scale(200),
           }}
         />
-        <Text
-          style={{
-            color: textColor,
-            fontFamily: "Roboto",
-            fontSize: scale(30),
-            paddingHorizontal: scale(50),
-            textAlign: "center",
-          }}
-        >
+        <MediumText style={{ width: "60%" }}>
           "Quiet the mind, and the soul will speak."
-        </Text>
-        <Button onPress={() => navigation.navigate("Meditation")}>
-          <Text style={{ color: textColor, fontSize: scale(30) }}>
-            Start Meditating
-          </Text>
+        </MediumText>
+        <Button onPress={() => navigate("Meditation")}>
+          <MediumText>Start Meditating</MediumText>
         </Button>
       </LinearGradient>
     </SafeAreaView>

@@ -16,7 +16,7 @@ export default function GuideScreen({
   next,
   number,
 }): React.ReactElement {
-  const navigation = useNavigation();
+  const { navigate, popToTop } = useNavigation();
 
   const config = {
     velocityThreshold: 0.3,
@@ -28,13 +28,13 @@ export default function GuideScreen({
 
     switch (gestureName) {
       case SWIPE_DOWN:
-        navigation.popToTop();
+        popToTop();
         break;
       case SWIPE_RIGHT:
-        navigation.navigate(prev);
+        navigate(prev);
         break;
       case SWIPE_LEFT:
-        navigation.navigate(next);
+        navigate(next);
         break;
       default:
         break;

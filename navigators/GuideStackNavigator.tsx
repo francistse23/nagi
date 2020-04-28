@@ -9,7 +9,7 @@ import GuideScreen from "../screens/GuideScreens/GuideScreen";
 
 const Stack = createStackNavigator();
 
-export default function GuideStackNavigator() {
+export default function GuideStackNavigator(): React.ReactElement {
   const guideItems: any[][] = [
     [
       "Take a Seat",

@@ -1,20 +1,18 @@
 import React from "react";
 import { FlatList } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import GestureRecognizer, {
   swipeDirections,
 } from "react-native-swipe-gestures";
 
 import Constants from "../../constants";
-import {
-  LargeText,
-  MediumText,
-  SmallText,
-  VerticalView,
-} from "../../styled-components";
+import { MediumText, SmallText, VerticalView } from "../../styled-components";
 
 const { spacing } = Constants;
 
-export default function BenefitsScreen({ navigation }) {
+export default function BenefitsScreen(): React.ReactElement {
+  const { goBack, navigate } = useNavigation();
+
   const benefits = [
     "Understand your pain",
     "Lower your stress",
@@ -34,10 +32,10 @@ export default function BenefitsScreen({ navigation }) {
     switch (gestureName) {
       case SWIPE_DOWN:
       case SWIPE_RIGHT:
-        navigation.goBack();
+        goBack();
         break;
       case SWIPE_LEFT:
-        navigation.navigate("Take a Seat");
+        navigate("Take a Seat");
         break;
       default:
         break;

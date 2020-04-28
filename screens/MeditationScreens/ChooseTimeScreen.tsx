@@ -1,5 +1,6 @@
 import React from "react";
 import { FlatList } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 
 import Constants from "../../constants";
@@ -7,9 +8,8 @@ import { Button, MediumText, SmallText } from "../../styled-components";
 
 const { mainColor, secondaryColor, spacing } = Constants;
 
-export default function ChooseTimeScreen({ navigation }) {
-  // const [isTimePickerVisible, setTimePickerVisible] = useState(false);
-
+export default function ChooseTimeScreen(): React.ReactElement {
+  const { navigate } = useNavigation();
   const options = [2, 5, 10];
 
   return (
@@ -39,7 +39,7 @@ export default function ChooseTimeScreen({ navigation }) {
           <Button
             onPress={() => {
               item
-                ? navigation.navigate("Meditation", {
+                ? navigate("Meditation", {
                     time: item * 60,
                   })
                 : null;

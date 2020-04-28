@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Image, Modal, StyleSheet, TouchableOpacity, View } from "react-native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Audio } from "expo-av";
 
@@ -13,10 +14,11 @@ import {
   SmallText,
 } from "../../styled-components";
 
-const { buttonColor, mainColor, secondaryColor, spacing } = Constants;
+const { buttonColor, mainColor, secondaryColor } = Constants;
 
-export default function MeditationScreen({ route, navigation }) {
-  const { time } = route.params;
+export default function MeditationScreen(): React.ReactElement {
+  const { time } = useRoute().params;
+  const { navigate } = useNavigation();
 
   const [modalVisible, setModalVisible] = useState(false);
   const [playbackObject, setPlaybackObject] = useState(null);
@@ -62,7 +64,7 @@ export default function MeditationScreen({ route, navigation }) {
       setTimerRunning(false);
       setTimeRemaining(0);
       pauseAndUnloadAudio();
-      timeoutNavigate = setTimeout(navigation.navigate("End"), 3500);
+      timeoutNavigate = setTimeout(navigate("End"), 3500);
     }
 
     return clearTimeout(timeoutNavigate);
@@ -173,8 +175,8 @@ export default function MeditationScreen({ route, navigation }) {
               onPress={() => {
                 setModalVisible(false);
                 playbackObject.sound.unloadAsync();
-                navigation.popToTop();
-                navigation.navigate("Home");
+                popToTop();
+                navigate("Home");
               }}
             >
               <SmallText>Yes</SmallText>

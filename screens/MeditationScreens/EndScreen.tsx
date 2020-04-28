@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import GestureRecognizer, {
   swipeDirections,
 } from "react-native-swipe-gestures";
@@ -10,7 +11,8 @@ import { SmallText } from "../../styled-components";
 
 const { mainColor, secondaryColor } = Constants;
 
-export default function EndScreen({ navigation }) {
+export default function EndScreen(): React.ReactElement {
+  const { navigate, popToTop } = useNavigation();
   // 0 - 11
   const index = Math.floor(Math.random() * 12);
 
@@ -27,8 +29,8 @@ export default function EndScreen({ navigation }) {
       case SWIPE_LEFT:
       case SWIPE_RIGHT:
       case SWIPE_UP:
-        navigation.popToTop();
-        navigation.navigate("Home");
+        popToTop();
+        navigate("Home");
         break;
       default:
         break;
