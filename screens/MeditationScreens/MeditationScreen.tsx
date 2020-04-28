@@ -18,7 +18,7 @@ const { buttonColor, mainColor, secondaryColor } = Constants;
 
 export default function MeditationScreen(): React.ReactElement {
   const { time } = useRoute().params;
-  const { navigate } = useNavigation();
+  const { navigate, popToTop } = useNavigation();
 
   const [modalVisible, setModalVisible] = useState(false);
   const [playbackObject, setPlaybackObject] = useState(null);

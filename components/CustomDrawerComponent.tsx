@@ -7,7 +7,7 @@ import { LargeText, SmallText } from "../styled-components";
 import { scale, verticalScale } from "../utilities/scale";
 import Constants from "../constants";
 
-const { spacing, textColor } = Constants;
+const { spacing } = Constants;
 
 export default function CustomDrawerContent(props) {
   return (
