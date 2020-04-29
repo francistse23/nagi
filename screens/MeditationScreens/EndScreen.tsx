@@ -1,4 +1,5 @@
 import React from "react";
+import { StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import GestureRecognizer, {
   swipeDirections,
@@ -9,7 +10,7 @@ import Constants from "../../constants";
 import { quotes } from "../../constants/quotes";
 import { SmallText } from "../../styled-components";
 
-const { mainColor, secondaryColor } = Constants;
+const { mainColor, secondaryColor, spacing } = Constants;
 
 export default function EndScreen(): React.ReactElement {
   const { navigate, popToTop } = useNavigation();
@@ -46,19 +47,23 @@ export default function EndScreen(): React.ReactElement {
       <LinearGradient
         colors={[secondaryColor, mainColor]}
         end={[0, 0.7]}
-        style={{
-          alignItems: "center",
-          flex: 1,
-          justifyContent: "center",
-          padding: "10%",
-          width: "100%",
-        }}
+        style={styles.container}
       >
         <SmallText>"{quotes[index].quote}"</SmallText>
-        <SmallText style={{ alignSelf: "flex-end", paddingVertical: 16 }}>
+        <SmallText style={{ alignSelf: "flex-end", paddingVertical: spacing }}>
           - {quotes[index].author}
         </SmallText>
       </LinearGradient>
     </GestureRecognizer>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    flex: 1,
+    justifyContent: "center",
+    padding: "10%",
+    width: "100%",
+  },
+});

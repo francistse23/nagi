@@ -17,13 +17,7 @@ export default function HomeScreen(): React.ReactElement {
       <LinearGradient
         colors={[secondaryColor, mainColor]}
         end={[0, 0.7]}
-        style={{
-          alignItems: "center",
-          flex: 1,
-          justifyContent: "space-between",
-          paddingVertical: "10%",
-          width: "100%",
-        }}
+        style={styles.linearGradientContainer}
       >
         <LargeText
           style={{
@@ -56,5 +50,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 1,
     justifyContent: "center",
+  },
+  linearGradientContainer: {
+    alignItems: "center",
+    flex: 1,
+    justifyContent: "space-between",
+    paddingVertical: "10%",
+    width: "100%",
   },
 });

@@ -71,6 +71,7 @@ export default function GuideStackNavigator(): React.ReactElement {
   return (
     <Stack.Navigator headerMode="none" initialRouteName="Benefits">
       <Stack.Screen name="Benefits" component={BenefitsScreen} />
+
       {guides.map((guide, index) => {
         const [screenName]: string[] = Object.keys(guide);
         const { description, image, next, number, prev } = Object.values(

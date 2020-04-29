@@ -21,9 +21,11 @@ export default function MeditationScreen(): React.ReactElement {
   const { navigate, popToTop } = useNavigation();
 
   const [modalVisible, setModalVisible] = useState(false);
+  // playback
   const [playbackObject, setPlaybackObject] = useState(null);
   const [playbackLoaded, setPlaybackLoaded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
+
   const [timerRunning, setTimerRunning] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(time);
 
@@ -35,7 +37,7 @@ export default function MeditationScreen(): React.ReactElement {
     let runTimer;
 
     if (timerRunning && timeRemaining > 0) {
-      runTimer = setInterval(countDown, 10);
+      runTimer = setInterval(countDown, 50);
     }
 
     return () => clearInterval(runTimer);
@@ -61,7 +63,7 @@ export default function MeditationScreen(): React.ReactElement {
     if (timeRemaining <= 0) {
       timeoutNavigate = setTimeout(() => {
         navigate("End");
-      }, 2500);
+      }, 1500);
       setTimerRunning(false);
       setTimeRemaining(0);
       pauseAndUnloadAudio();
@@ -88,10 +90,13 @@ export default function MeditationScreen(): React.ReactElement {
         setPlaybackLoaded(true);
       }
     }
-    createPlayback();
 
     if (playbackObject) {
-      return playbackObject.sound.unloadAysnc();
+      return () => {
+        playbackObject.sound.unloadAysnc();
+      };
+    } else {
+      createPlayback();
     }
   }, []);
 
@@ -151,23 +156,10 @@ export default function MeditationScreen(): React.ReactElement {
         <LinearGradient
           colors={[secondaryColor, mainColor]}
           end={[0, 0.7]}
-          style={{
-            alignItems: "center",
-            flex: 1,
-            justifyContent: "space-around",
-            paddingVertical: "10%",
-            width: "100%",
-          }}
+          style={styles.container}
         >
           <MediumText>Do you want to leave this session?</MediumText>
-          <View
-            style={{
-              alignItems: "center",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              width: "60%",
-            }}
-          >
+          <View style={styles.buttonsContainer}>
             <TouchableOpacity onPress={() => setModalVisible(false)}>
               <SmallText>No</SmallText>
             </TouchableOpacity>
@@ -189,6 +181,12 @@ export default function MeditationScreen(): React.ReactElement {
 }
 
 const styles = StyleSheet.create({
+  buttonsContainer: {
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "60%",
+  },
   container: {
     alignItems: "center",
     flex: 1,

@@ -9,7 +9,7 @@ import Constants from "../constants";
 
 const { spacing } = Constants;
 
-export default function CustomDrawerContent(props) {
+export default function CustomDrawerContent(props): React.ReactElement {
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.header}>
