@@ -38,6 +38,8 @@ export default function EndScreen(): React.ReactElement {
     }
   };
 
+  const { quote, author } = quotes[index];
+
   return (
     <GestureRecognizer
       config={config}
@@ -49,9 +51,9 @@ export default function EndScreen(): React.ReactElement {
         end={[0, 0.7]}
         style={styles.container}
       >
-        <SmallText>"{quotes[index].quote}"</SmallText>
+        <SmallText>"{quote}"</SmallText>
         <SmallText style={{ alignSelf: "flex-end", paddingVertical: spacing }}>
-          - {quotes[index].author}
+          - {author}
         </SmallText>
       </LinearGradient>
     </GestureRecognizer>

@@ -37,11 +37,11 @@ export default function MeditationScreen(): React.ReactElement {
     let runTimer;
 
     if (timerRunning && timeRemaining > 0) {
-      runTimer = setInterval(countDown, 50);
+      runTimer = setInterval(countDown, 10);
     }
 
     return () => clearInterval(runTimer);
-  }, [timerRunning]);
+  }, [timerRunning, timeRemaining]);
 
   useEffect(() => {
     let timeoutNavigate;

@@ -33,6 +33,7 @@ export default function ChooseTimeScreen(): React.ReactElement {
           <Button
             onPress={() =>
               navigate("Meditation", {
+                // passing seconds to meditation screen
                 time: item * 60,
               })
             }
